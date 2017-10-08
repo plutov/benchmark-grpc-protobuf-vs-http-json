@@ -1,4 +1,4 @@
-package main
+package grpc
 
 import (
 	"errors"
@@ -9,7 +9,7 @@ import (
 	"net/mail"
 )
 
-func main() {
+func Start() {
 	lis, _ := net.Listen("tcp", ":60000")
 
 	srv := grpc.NewServer()
