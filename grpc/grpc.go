@@ -14,7 +14,7 @@ func Start() {
 
 	srv := grpc.NewServer()
 	proto.RegisterAPIServer(srv, &Server{})
-	srv.Serve(lis)
+	go srv.Serve(lis)
 }
 
 type Server struct{}

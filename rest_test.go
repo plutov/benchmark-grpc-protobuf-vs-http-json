@@ -2,6 +2,7 @@ package benchmarks
 
 import (
 	"bytes"
+	//"encoding/json"
 	"github.com/plutov/benchmark-grpc-rest/rest"
 	"net/http"
 	"testing"
@@ -9,7 +10,7 @@ import (
 )
 
 func init() {
-	go rest.Start()
+	rest.Start()
 	time.Sleep(time.Second)
 }
 

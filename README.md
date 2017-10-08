@@ -13,11 +13,11 @@ go test -bench=.
 
 Tested in Go 1.9.
 ```
-BenchmarkGRPC-4   	   10000	    206301 ns/op
-BenchmarkREST-4   	    3000	    497311 ns/op
+BenchmarkGRPC-4   	   10000	    197919 ns/op
+BenchmarkREST-4   	    1000	   1720124 ns/op
 ```
 
-gRPC is **3** times faster!
+gRPC is **10** times faster!
 
 ### gRPC
 

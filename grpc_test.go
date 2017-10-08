@@ -10,7 +10,7 @@ import (
 )
 
 func init() {
-	go grpc.Start()
+	grpc.Start()
 	time.Sleep(time.Second)
 }
 
