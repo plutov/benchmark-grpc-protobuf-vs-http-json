@@ -6,8 +6,8 @@ This repository contains 2 equal APIs: gRPC and REST. The goal is to run benchma
 
 ```
 glide i
-go run grpc/main.go &
-go run rest/main.go &
+go run grpc/main.go
+go run rest/main.go
 go test -bench=.
 ```
 
