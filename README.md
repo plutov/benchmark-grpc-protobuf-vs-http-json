@@ -19,7 +19,7 @@ BenchmarkGRPC-4   	   10000	    206301 ns/op
 BenchmarkREST-4   	    3000	    497311 ns/op
 ```
 
-**3** times faster!
+gRPC is **3** times faster!
 
 ### gRPC
 
