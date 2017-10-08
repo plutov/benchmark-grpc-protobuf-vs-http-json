@@ -6,17 +6,20 @@ This repository contains 2 equal APIs: gRPC and REST. The goal is to run benchma
 
 ```
 glide i
+go run grpc/main.go &
+go run rest/main.go &
 go test -bench=.
 ```
 
 ### Results
 
+Tested in Go 1.9.
 ```
-BenchmarkGRPC-4   	   10000	    186575 ns/op
-BenchmarkREST-4   	    2000	   1127716 ns/op
+BenchmarkGRPC-4   	   10000	    206301 ns/op
+BenchmarkREST-4   	    3000	    497311 ns/op
 ```
 
-**5** times faster!
+**3** times faster!
 
 ### gRPC
 

@@ -1,4 +1,4 @@
-package rest
+package main
 
 import (
 	"encoding/json"
@@ -7,9 +7,9 @@ import (
 	"net/mail"
 )
 
-func Start() {
+func main() {
 	http.HandleFunc("/", CreateUser)
-	go http.ListenAndServe(":60001", nil)
+	http.ListenAndServe(":60001", nil)
 }
 
 type User struct {

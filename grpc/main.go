@@ -1,4 +1,4 @@
-package grpc
+package main
 
 import (
 	"errors"
@@ -9,12 +9,12 @@ import (
 	"net/mail"
 )
 
-func Start() {
+func main() {
 	lis, _ := net.Listen("tcp", ":60000")
 
 	srv := grpc.NewServer()
 	proto.RegisterAPIServer(srv, &Server{})
-	go srv.Serve(lis)
+	srv.Serve(lis)
 }
 
 type Server struct{}
