@@ -1,0 +1,9 @@
+package: github.com/plutov/benchmark-grpc-rest
+import:
+- package: google.golang.org/grpc
+- package: golang.org/x/net
+  subpackages:
+  - context
+- package: github.com/golang/protobuf
+  subpackages:
+  - proto
