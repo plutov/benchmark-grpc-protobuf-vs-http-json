@@ -8,7 +8,7 @@ This repository contains 2 equal APIs: gRPC using Protobuf and JSON over HTTP. T
 glide i
 ```
 
-Run each command in different Terminal tab:
+Run each command in different tab:
 
 ```
 go run grpc/main.go
@@ -28,7 +28,7 @@ gRPC+Protobuf is **10** times faster!
 
 ### CPU usage comparison
 
-Restart applications, then use profiling tool `pprof` during 30 sec when the client is talking to the server with these commands:
+Restart applications, then use profiling tool `pprof` during 30 sec when the client is talking to the server with these commands in different tabs:
 
 ```
 go tool pprof http://localhost:6060/debug/pprof/profile

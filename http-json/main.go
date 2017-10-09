@@ -15,7 +15,7 @@ func main() {
 	}()
 
 	http.HandleFunc("/", CreateUser)
-	http.ListenAndServe(":60001", nil)
+	log.Println(http.ListenAndServe(":60001", nil))
 }
 
 type User struct {

@@ -8,7 +8,7 @@ import (
 	_ "net/http/pprof"
 	"net/mail"
 
-	"github.com/plutov/benchmark-grpc-vs-json/grpc/proto"
+	"github.com/plutov/benchmark-grpc-protobuf-vs-http-json/grpc-protobuf/proto"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 )
@@ -22,7 +22,7 @@ func main() {
 
 	srv := grpc.NewServer()
 	proto.RegisterAPIServer(srv, &Server{})
-	srv.Serve(lis)
+	log.Println(srv.Serve(lis))
 }
 
 type Server struct{}
