@@ -14,7 +14,7 @@ func init() {
 	time.Sleep(time.Second)
 }
 
-func BenchmarkJSON(b *testing.B) {
+func BenchmarkJSONHTTP(b *testing.B) {
 	client := &http.Client{}
 	buf := bytes.NewBufferString(`{"email":"foo@bar.com","name":"Bench","password":"bench"}`)
 
