@@ -4,15 +4,7 @@ import (
 	"bytes"
 	"net/http"
 	"testing"
-	"time"
-
-	"github.com/plutov/benchmark-grpc-vs-json/json"
 )
-
-func init() {
-	json.Start()
-	time.Sleep(time.Second)
-}
 
 func BenchmarkJSONHTTP(b *testing.B) {
 	client := &http.Client{}

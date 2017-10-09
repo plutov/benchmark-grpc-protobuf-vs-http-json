@@ -1,15 +1,21 @@
-package json
+package main
 
 import (
 	"encoding/json"
 	"errors"
+	"log"
 	"net/http"
+	_ "net/http/pprof"
 	"net/mail"
 )
 
-func Start() {
+func main() {
+	go func() {
+		log.Println(http.ListenAndServe("localhost:6061", nil))
+	}()
+
 	http.HandleFunc("/", CreateUser)
-	go http.ListenAndServe(":60001", nil)
+	http.ListenAndServe(":60001", nil)
 }
 
 type User struct {

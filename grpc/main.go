@@ -1,20 +1,28 @@
-package grpc
+package main
 
 import (
 	"errors"
+	"log"
+	"net"
+	"net/http"
+	_ "net/http/pprof"
+	"net/mail"
+
 	"github.com/plutov/benchmark-grpc-vs-json/grpc/proto"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
-	"net"
-	"net/mail"
 )
 
-func Start() {
+func main() {
+	go func() {
+		log.Println(http.ListenAndServe("localhost:6060", nil))
+	}()
+
 	lis, _ := net.Listen("tcp", ":60000")
 
 	srv := grpc.NewServer()
 	proto.RegisterAPIServer(srv, &Server{})
-	go srv.Serve(lis)
+	srv.Serve(lis)
 }
 
 type Server struct{}
