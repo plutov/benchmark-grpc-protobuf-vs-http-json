@@ -13,8 +13,8 @@ go test -bench=.
 
 Tested in Go 1.9.
 ```
-BenchmarkGRPCProtobuf-4   	10000	    197919 ns/op
-BenchmarkJSONHTTP-4   	    1000	   1720124 ns/op
+BenchmarkGRPCProtobuf-8   	   10000	    197919 ns/op
+BenchmarkJSONHTTP-8       	    1000	   1720124 ns/op
 ```
 
 gRPC+Protobuf is **10** times faster!
