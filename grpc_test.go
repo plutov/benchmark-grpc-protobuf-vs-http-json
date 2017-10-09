@@ -1,8 +1,8 @@
 package benchmarks
 
 import (
-	"github.com/plutov/benchmark-grpc-rest/grpc"
-	"github.com/plutov/benchmark-grpc-rest/grpc/proto"
+	"github.com/plutov/benchmark-grpc-vs-json/grpc"
+	"github.com/plutov/benchmark-grpc-vs-json/grpc/proto"
 	"golang.org/x/net/context"
 	g "google.golang.org/grpc"
 	"testing"

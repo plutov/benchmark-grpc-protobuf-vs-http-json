@@ -2,7 +2,7 @@ package grpc
 
 import (
 	"errors"
-	"github.com/plutov/benchmark-grpc-rest/grpc/proto"
+	"github.com/plutov/benchmark-grpc-vs-json/grpc/proto"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"net"

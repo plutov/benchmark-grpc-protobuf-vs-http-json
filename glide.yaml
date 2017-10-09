@@ -1,4 +1,4 @@
-package: github.com/plutov/benchmark-grpc-rest
+package: github.com/plutov/benchmark-grpc-vs-json
 import:
 - package: google.golang.org/grpc
 - package: golang.org/x/net

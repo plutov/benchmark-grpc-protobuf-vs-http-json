@@ -2,19 +2,19 @@ package benchmarks
 
 import (
 	"bytes"
-	//"encoding/json"
-	"github.com/plutov/benchmark-grpc-rest/rest"
 	"net/http"
 	"testing"
 	"time"
+
+	"github.com/plutov/benchmark-grpc-vs-json/json"
 )
 
 func init() {
-	rest.Start()
+	json.Start()
 	time.Sleep(time.Second)
 }
 
-func BenchmarkREST(b *testing.B) {
+func BenchmarkJSON(b *testing.B) {
 	client := &http.Client{}
 	buf := bytes.NewBufferString(`{"email":"foo@bar.com","name":"Bench","password":"bench"}`)
 
