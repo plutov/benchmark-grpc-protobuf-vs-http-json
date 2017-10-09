@@ -2,9 +2,16 @@ package benchmarks
 
 import (
 	"bytes"
+	"encoding/json"
 	"net/http"
 	"testing"
 )
+
+type Response struct {
+	Message string `json:"message"`
+	Code    int    `json:"code"`
+	Id      string `json:"id"`
+}
 
 func BenchmarkHTTPJSON(b *testing.B) {
 	client := &http.Client{}
@@ -22,5 +29,8 @@ func doPost(client *http.Client, b *testing.B) {
 		b.Fatal(err.Error())
 	}
 
-	defer resp.Body.Close()
+	// We need to parse response to have a fair comparison as gRPC does it
+	var target Response
+	json.NewDecoder(resp.Body).Decode(target)
+	resp.Body.Close()
 }
