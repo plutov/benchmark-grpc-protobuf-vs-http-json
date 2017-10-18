@@ -5,12 +5,18 @@ import (
 	"encoding/json"
 	"net/http"
 	"testing"
+
+	"github.com/plutov/benchmark-grpc-protobuf-vs-http-json/http-json"
 )
 
 type Response struct {
 	Message string `json:"message"`
 	Code    int    `json:"code"`
-	Id      string `json:"id"`
+	ID      string `json:"id"`
+}
+
+func init() {
+	go httpjson.Start()
 }
 
 func BenchmarkHTTPJSON(b *testing.B) {

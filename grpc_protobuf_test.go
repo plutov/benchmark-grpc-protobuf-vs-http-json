@@ -3,10 +3,15 @@ package benchmarks
 import (
 	"testing"
 
+	"github.com/plutov/benchmark-grpc-protobuf-vs-http-json/grpc-protobuf"
 	"github.com/plutov/benchmark-grpc-protobuf-vs-http-json/grpc-protobuf/proto"
 	"golang.org/x/net/context"
 	g "google.golang.org/grpc"
 )
+
+func init() {
+	go grpcprotobuf.Start()
+}
 
 func BenchmarkGRPCProtobuf(b *testing.B) {
 	conn, _ := g.Dial("127.0.0.1:60000", g.WithInsecure())

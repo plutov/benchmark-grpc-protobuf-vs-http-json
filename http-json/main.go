@@ -1,35 +1,34 @@
-package main
+package httpjson
 
 import (
 	"encoding/json"
 	"errors"
 	"log"
 	"net/http"
-	_ "net/http/pprof"
 	"net/mail"
 )
 
-func main() {
-	go func() {
-		log.Println(http.ListenAndServe("localhost:6061", nil))
-	}()
-
+// Start entrypoint
+func Start() {
 	http.HandleFunc("/", CreateUser)
 	log.Println(http.ListenAndServe(":60001", nil))
 }
 
+// User type
 type User struct {
 	Email    string `json:"email"`
 	Name     string `json:"name"`
 	Password string `json:"password"`
 }
 
+// Response type
 type Response struct {
 	Message string `json:"message"`
 	Code    int    `json:"code"`
-	Id      string `json:"id"`
+	ID      string `json:"id"`
 }
 
+// CreateUser handler
 func CreateUser(w http.ResponseWriter, r *http.Request) {
 	decoder := json.NewDecoder(r.Body)
 	var user User
@@ -48,7 +47,7 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 
 	json.NewEncoder(w).Encode(Response{
 		Code: 200,
-		Id:   "1000000",
+		ID:   "1000000",
 	})
 }
 

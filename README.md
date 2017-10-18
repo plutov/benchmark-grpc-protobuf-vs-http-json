@@ -7,15 +7,11 @@ This repository contains 2 equal APIs: gRPC using Protobuf and JSON over HTTP. T
 Install dependencies first:
 
 ```
-brew install glide
-glide i
+dep ensure
 ```
 
-Run each command in different tab:
-
+Run benchmarks:
 ```
-go run grpc-protobuf/main.go
-go run http-json/main.go
 go test -bench=.
 ```
 
@@ -31,12 +27,18 @@ gRPC+Protobuf is **10** times faster!
 
 ### CPU usage comparison
 
-Restart applications, then use profiling tool `pprof` during 30 sec when the client is talking to the server with these commands in different tabs:
+This will create an executable that ends with .test and the profile information will be stored in `grpcprotobuf-cpu.out` and `httpjson-cpu.out`. Run it for each benchmark:
 
 ```
-go tool pprof http://localhost:6060/debug/pprof/profile
-go tool pprof http://localhost:6061/debug/pprof/profile
+go test -bench=BenchmarkGRPCProtobuf -cpuprofile=grpcprotobuf.cpu
+go test -bench=BenchmarkHTTPJSON -cpuprofile=httpjson.cpu
 ```
 
-Run tests to get client connections. Then in each `pprof` run `top` to see CPU usage.
-My results show that Protobuf consumes less ressources, **30% less**.
+Check CPU usage using:
+
+```
+go tool pprof benchmark-grpc-protobuf-vs-http-json.test grpcprotobuf.cpu
+go tool pprof benchmark-grpc-protobuf-vs-http-json.test httpjson.cpu
+```
+
+My results show that Protobuf consumes less ressources, around **30% less**.
