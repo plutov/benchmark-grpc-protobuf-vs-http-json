@@ -27,14 +27,14 @@ gRPC+Protobuf is **10** times faster!
 
 ### CPU usage comparison
 
-This will create an executable that ends with .test and the profile information will be stored in `grpcprotobuf-cpu.out` and `httpjson-cpu.out`. Run it for each benchmark:
+This will create an executable `benchmark-grpc-protobuf-vs-http-json.test` and the profile information will be stored in `grpcprotobuf.cpu` and `httpjson.cpu`:
 
 ```
 go test -bench=BenchmarkGRPCProtobuf -cpuprofile=grpcprotobuf.cpu
 go test -bench=BenchmarkHTTPJSON -cpuprofile=httpjson.cpu
 ```
 
-Check CPU usage using:
+Check CPU usage per approach using:
 
 ```
 go tool pprof benchmark-grpc-protobuf-vs-http-json.test grpcprotobuf.cpu
