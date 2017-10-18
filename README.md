@@ -4,15 +4,18 @@ This repository contains 2 equal APIs: gRPC using Protobuf and JSON over HTTP. T
 
 ### Run tests
 
+Install dependencies first:
+
 ```
+brew install glide
 glide i
 ```
 
 Run each command in different tab:
 
 ```
-go run grpc/main.go
-go run json/main.go
+go run grpc-protobuf/main.go
+go run http-json/main.go
 go test -bench=.
 ```
 
