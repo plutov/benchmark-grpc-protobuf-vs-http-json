@@ -24,7 +24,7 @@ func Start() {
 type Server struct{}
 
 // CreateUser handler
-func (s *Server) CreateUser(ctx context.Context, in *proto.Request) (*proto.Response, error) {
+func (s *Server) CreateUser(ctx context.Context, in *proto.User) (*proto.Response, error) {
 	validationErr := validate(in)
 	if validationErr != nil {
 		return &proto.Response{
@@ -33,13 +33,15 @@ func (s *Server) CreateUser(ctx context.Context, in *proto.Request) (*proto.Resp
 		}, validationErr
 	}
 
+	in.Id = "1000000"
 	return &proto.Response{
-		Code: 200,
-		Id:   "1000000",
+		Code:    200,
+		Message: "OK",
+		User:    in,
 	}, nil
 }
 
-func validate(in *proto.Request) error {
+func validate(in *proto.User) error {
 	_, err := mail.ParseAddress(in.Email)
 	if err != nil {
 		return err

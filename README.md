@@ -46,3 +46,10 @@ go tool pprof httpjson.cpu
 ```
 
 My results show that Protobuf consumes less ressources, around **30% less**.
+
+### gRPC definition
+
+```
+```
+protoc --go_out=plugins=grpc:. grpc-protobuf/proto/api.proto
+```

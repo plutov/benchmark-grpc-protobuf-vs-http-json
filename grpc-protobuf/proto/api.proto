@@ -3,17 +3,18 @@ syntax = "proto3";
 package proto;
 
 service API {
-	rpc CreateUser(Request) returns (Response) {}
+	rpc CreateUser(User) returns (Response) {}
 }
 
-message Request {
-	string email = 1;
-	string name = 2;
-	string password = 3;
+message User {
+	string id = 1;
+	string email = 2;
+	string name = 3;
+	string password = 4;
 }
 
 message Response {
 	string message = 1;
 	uint64 code = 2;
-	string id = 3;
+	User user = 3;
 }

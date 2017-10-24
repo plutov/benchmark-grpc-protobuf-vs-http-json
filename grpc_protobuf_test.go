@@ -2,6 +2,7 @@ package benchmarks
 
 import (
 	"testing"
+	"time"
 
 	"github.com/plutov/benchmark-grpc-protobuf-vs-http-json/grpc-protobuf"
 	"github.com/plutov/benchmark-grpc-protobuf-vs-http-json/grpc-protobuf/proto"
@@ -11,6 +12,7 @@ import (
 
 func init() {
 	go grpcprotobuf.Start()
+	time.Sleep(time.Second)
 }
 
 func BenchmarkGRPCProtobuf(b *testing.B) {
@@ -23,12 +25,18 @@ func BenchmarkGRPCProtobuf(b *testing.B) {
 }
 
 func doGRPC(client proto.APIClient, b *testing.B) {
-	_, err := client.CreateUser(context.Background(), &proto.Request{
+	resp, err := client.CreateUser(context.Background(), &proto.User{
 		Email:    "foo@bar.com",
 		Name:     "Bench",
 		Password: "bench",
 	})
+
 	if err != nil {
-		b.Fatal(err.Error())
+		b.Fatalf("grpc request failed: %v", err)
+	}
+
+	defer resp.Reset()
+	if resp == nil || resp.Code != 200 || resp.User == nil {
+		b.Fatalf("grpc response is wrong: %v", resp)
 	}
 }

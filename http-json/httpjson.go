@@ -16,6 +16,7 @@ func Start() {
 
 // User type
 type User struct {
+	ID       string `json:"id"`
 	Email    string `json:"email"`
 	Name     string `json:"name"`
 	Password string `json:"password"`
@@ -25,7 +26,7 @@ type User struct {
 type Response struct {
 	Message string `json:"message"`
 	Code    int    `json:"code"`
-	ID      string `json:"id"`
+	User    *User  `json:"user"`
 }
 
 // CreateUser handler
@@ -45,9 +46,11 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	user.ID = "1000000"
 	json.NewEncoder(w).Encode(Response{
-		Code: 200,
-		ID:   "1000000",
+		Code:    200,
+		Message: "OK",
+		User:    &user,
 	})
 }
 
