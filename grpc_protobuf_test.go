@@ -36,7 +36,7 @@ func doGRPC(client proto.APIClient, b *testing.B) {
 	}
 
 	defer resp.Reset()
-	if resp == nil || resp.Code != 200 || resp.User == nil {
+	if resp == nil || resp.Code != 200 || resp.User == nil || resp.User.Id != "1000000" {
 		b.Fatalf("grpc response is wrong: %v", resp)
 	}
 }

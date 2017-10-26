@@ -24,7 +24,13 @@ func BenchmarkHTTPJSON(b *testing.B) {
 }
 
 func doPost(client *http.Client, b *testing.B) {
-	buf := bytes.NewBufferString(`{"email":"foo@bar.com","name":"Bench","password":"bench"}`)
+	u := &httpjson.User{
+		Email:    "foo@bar.com",
+		Name:     "Bench",
+		Password: "bench",
+	}
+	buf := new(bytes.Buffer)
+	json.NewEncoder(buf).Encode(u)
 
 	resp, err := client.Post("http://127.0.0.1:60001/", "application/json", buf)
 	if err != nil {
@@ -39,7 +45,7 @@ func doPost(client *http.Client, b *testing.B) {
 		b.Fatalf("unable to decode json: %v", decodeErr)
 	}
 
-	if target.Code != 200 || target.User == nil {
+	if target.Code != 200 || target.User == nil || target.User.ID != "1000000" {
 		b.Fatalf("http response is wrong: %v", resp)
 	}
 }
