@@ -36,6 +36,7 @@ func doPost(client *http.Client, b *testing.B) {
 	if err != nil {
 		b.Fatalf("http request failed: %v", err)
 	}
+
 	defer resp.Body.Close()
 
 	// We need to parse response to have a fair comparison as gRPC does it

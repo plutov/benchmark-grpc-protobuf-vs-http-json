@@ -16,7 +16,11 @@ func init() {
 }
 
 func BenchmarkGRPCProtobuf(b *testing.B) {
-	conn, _ := g.Dial("127.0.0.1:60000", g.WithInsecure())
+	conn, err := g.Dial("127.0.0.1:60000", g.WithInsecure())
+	if err != nil {
+		b.Fatalf("grpc connection failed: %v", err)
+	}
+
 	client := proto.NewAPIClient(conn)
 
 	for n := 0; n < b.N; n++ {
@@ -35,7 +39,6 @@ func doGRPC(client proto.APIClient, b *testing.B) {
 		b.Fatalf("grpc request failed: %v", err)
 	}
 
-	defer resp.Reset()
 	if resp == nil || resp.Code != 200 || resp.User == nil || resp.User.Id != "1000000" {
 		b.Fatalf("grpc response is wrong: %v", resp)
 	}
