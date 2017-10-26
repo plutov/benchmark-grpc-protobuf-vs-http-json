@@ -49,7 +49,10 @@ My results show that Protobuf consumes less ressources, around **30% less**.
 
 ### gRPC definition
 
-```
+ - Install [Go](https://golang.org/dl/)
+ - Install [Protocol Buffers](https://github.com/google/protobuf/releases)
+ - Install protoc plugin: `go get github.com/golang/protobuf/proto github.com/golang/protobuf/protoc-gen-go`
+
 ```
 protoc --go_out=plugins=grpc:. grpc-protobuf/proto/api.proto
 ```
