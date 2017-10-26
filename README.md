@@ -23,11 +23,11 @@ go test -bench=.
 ### Results
 
 ```
-BenchmarkGRPCProtobuf-8   	   10000	    197919 ns/op
-BenchmarkJSONHTTP-8       	    1000	   1720124 ns/op
+BenchmarkGRPCProtobuf-8   	   10000	    122500 ns/op
+BenchmarkHTTPJSON-8       	   10000	    116343 ns/op
 ```
 
-gRPC+Protobuf is **10** times faster!
+They are almost the same, even HTTP+JSON is a bit faster.
 
 ### CPU usage comparison
 
