@@ -17,14 +17,18 @@ dep ensure
 
 Run benchmarks:
 ```
-go test -bench=.
+go test -bench=. -benchmem
 ```
 
 ### Results
 
 ```
-BenchmarkGRPCProtobuf-8   	   10000	    122500 ns/op
-BenchmarkHTTPJSON-8       	   10000	    116343 ns/op
+goos: darwin
+goarch: amd64
+BenchmarkGRPCProtobuf-8            10000            117649 ns/op            7686 B/op        154 allocs/op
+BenchmarkHTTPJSON-8                10000            105837 ns/op            8932 B/op        116 allocs/op
+PASS
+ok      github.com/plutov/benchmark-grpc-protobuf-vs-http-json  4.340s
 ```
 
 They are almost the same, even HTTP+JSON is a bit faster.
