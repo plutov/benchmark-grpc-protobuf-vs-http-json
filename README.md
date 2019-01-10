@@ -4,20 +4,13 @@ This repository contains 2 equal APIs: gRPC using Protobuf and JSON over HTTP. T
 
 ### Requirements
 
- - Go 1.9
- - [dep](https://github.com/golang/dep)
+ - Go 1.11
 
 ### Run tests
 
-Install dependencies first:
-
-```
-dep ensure
-```
-
 Run benchmarks:
 ```
-go test -bench=. -benchmem
+GO111MODULE=on go test -bench=. -benchmem
 ```
 
 ### Results
@@ -31,15 +24,15 @@ PASS
 ok      github.com/plutov/benchmark-grpc-protobuf-vs-http-json  4.340s
 ```
 
-They are almost the same, even HTTP+JSON is a bit faster.
+They are almost the same, HTTP+JSON is a bit faster and has less allocs/op.
 
 ### CPU usage comparison
 
 This will create an executable `benchmark-grpc-protobuf-vs-http-json.test` and the profile information will be stored in `grpcprotobuf.cpu` and `httpjson.cpu`:
 
 ```
-go test -bench=BenchmarkGRPCProtobuf -cpuprofile=grpcprotobuf.cpu
-go test -bench=BenchmarkHTTPJSON -cpuprofile=httpjson.cpu
+GO111MODULE=on go test -bench=BenchmarkGRPCProtobuf -cpuprofile=grpcprotobuf.cpu
+GO111MODULE=on go test -bench=BenchmarkHTTPJSON -cpuprofile=httpjson.cpu
 ```
 
 Check CPU usage per approach using:
